@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block tittle %} Home {% endblock tittle %}
+<style>
+    h3 {
+        color: rgb(90, 185, 90);
+    }
+</style> {% block body %}
+
+<div class="container" my-4 my-sm-0>
+    <br>
+    <br>
+    <br> <br>
+    <form action="{% url 'result'%}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+
+            <label for="exampleInputPassword1">
+                <h3>Enter Your Experience</h3>
+                </label>
+            <input name="Experience" type=" text " class="form-control " id="Inp_Exp " required>
+        </div>
+
+
+        <button type="submit " class="btn btn-success " value="Submit ">Submit</button>
+        <!-- <button type="reset " class="btn btn-primary " value="Reset "> Reset</button> -->
+    </form>
+
+</div>
+{% endblock body %}

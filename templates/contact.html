@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block tittle %} Contact {% endblock tittle %} {% block body %}
+<div class="container my-5" >
+<h3 class="ml-5">Contact Us Regarding Any Query</h3>
+ <form action="/contact" method="POST">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="name">Your Name</label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name">
+  </div>
+  <div class="form-group">
+    <label for="email">Your Email</label>
+    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email">
+  </div>
+  <div class="form-group">
+    <label for="phone">Your Phone Numberr(with country code)</label>
+    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter Your Phone Numbe">
+  </div>
+   <div class="form-group">
+    <label for="desc">How we can serve you</label>
+    <textarea class="form-control" id="desc" name="desc" rows="3"></textarea>
+  </div>
+  <button type="submit" class="btn btn-success">Submit</button>
+</form>
+</div>
+{% endblock body %}

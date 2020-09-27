@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {% block tittle %} Result {% endblock tittle %}
+<style>
+    .link {
+        text-decoration: none;
+        margin-left: 50px;
+    }
+</style>
+{% block body %}
+<div class="container">
+    <br><br><br><br><br><br>
+    <b> <h3>Your Predicted Salary is: {{result}} 
+<span>&#8377;</span> Per Months </h3></b>
+
+    <a href="/" class="link">
+        <br><br><br>
+        <h3>Go Back to Home</h3>
+    </a>
+</div>
+{% endblock body %}
