@@ -34,12 +34,12 @@ def result(request):
     
     Experience=int(request.POST["Experience"])
     Experience=np.reshape(Experience,(-1, 1))
-    Experience=Experience.astype('int64')
+    Experience=Experience.astype('float64')
    
         
-    #    Experience=np.array([[0]])
+  
        
-    print(Experience)
+ 
 
     result= cls.predict(Experience)
     result=result.item()
