@@ -25,7 +25,7 @@ def contact(request):
         desc= request.POST.get('desc', '')
         contact=Contact(name=name,email=email,phone=phone,desc=desc)
         contact.save()
-        messages.success(request, "Thanks For Contacting Us We Will Manage Your Feedback  ")
+        messages.success(request, "Thanks For Contactingw Us We Will Manage Your Feedback  ")
     return render(request, 'contact.html')
 #Result Page
 def result(request):
@@ -34,12 +34,12 @@ def result(request):
     
     Experience=int(request.POST["Experience"])
     Experience=np.reshape(Experience,(-1, 1))
-    Experience=Experience.astype('int64')
+    Experience=Experience.astype('float64')
    
         
-    #    Experience=np.array([[0]])
+    
        
-    print(Experience)
+    
 
     result= cls.predict(Experience)
     result=result.item()
@@ -97,4 +97,4 @@ def handleLogout(request):
     
     logout(request)
     messages.success(request, "Successfully Logged Out")
-    return redirect('mainApp')
+    return redirect('mainApp') 
