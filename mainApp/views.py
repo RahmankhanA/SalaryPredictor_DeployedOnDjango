@@ -2,71 +2,94 @@
 from django.shortcuts import render, HttpResponse, redirect
 import joblib
 import numpy as np
-from .models import Contact
+from .models import Contact, UserHistory
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-
+from django.http import HttpResponseNotFound
+from datetime import datetime
 # Create your views here.
-#Home Page or index page
+# Home Page or index page
+
+def history(request):
+    history_list=UserHistory.objects.filter(username=request.user)
+    for detail in history_list:
+    
+        # print(detail)
+        print(detail.exp)
+        print(detail.salary)
+        print(detail.date)
+    return render(request,'history.html', {'history_list':history_list})
 def index(request):
     return render(request, 'index.html')
 
-#About Page
+# About Page
+
+
 def about(request):
     return render(request, 'about.html')
 
-# Contact Page
-def contact(request):
-    if request.method=="POST":
-        name= request.POST.get('name', '')
-        email= request.POST.get('email', '')
-        phone= request.POST.get('phone', '')
-        desc= request.POST.get('desc', '')
-        contact=Contact(name=name,email=email,phone=phone,desc=desc)
-        contact.save()
-        messages.success(request, "Thanks For Contacting Us We Will Manage Your Feedback  ")
-    return render(request, 'contact.html')
-# Checking error
-def is_string(string):
-    
+# def notfound(request):
+#     return render(request, 'notfound.html')
 
-        
+# Contact Page
+
+
+def contact(request):
+    if request.method == "POST":
+        name = request.POST.get('name', '')
+        email = request.POST.get('email', '')
+        phone = request.POST.get('phone', '')
+        desc = request.POST.get('desc', '')
+
+        contact = Contact(name=name, email=email, phone=phone, desc=desc)
+        contact.save()
+        messages.success(
+            request, "Thanks For Contacting Us We Will Manage Your Feedback  ")
+    return render(request, 'contact.html')
+
+
+def is_string(string):
+
     try:
         float(string)
-        output=False
-       
+        output = False
+
     except ValueError:
-        
-        output=True
+
+        output = True
 
     return output
 
 
-
-#Result Page
+# Result Page
 def result(request):
     cls = joblib.load("final_model.sav")
-    
-    
-    Experience=request.GET["Experience"]
-    if is_string(Experience)==False:
 
-        Experience=np.reshape(Experience,(-1, 1))
-        Experience=Experience.astype('float64')
+    Experience = request.POST["Experience"]
+    if is_string(Experience) == False:
+
+        Experience = np.reshape(Experience, (-1, 1))
+        Experience = Experience.astype('float64')
            #    Experience=np.array([[0]])
         print(Experience)
-        result= cls.predict(Experience)
-        result=result.item()
-        result=round(result, 2)
+        result = cls.predict(Experience)
+        result = result.item()
+        result = round(result, 2)
+        if  request.user.is_authenticated:
+
+            print(request.user!='AnonymousUser')
+            
+       
+            history = UserHistory(exp=Experience.item(), salary=result, username=request.user, date=datetime.now())
+            history.save()
         return render(request, 'result.html', {'result':result})
 
     else:
         messages.error(request, 'Please Provide Your Experience in Number ')
         return redirect('mainApp')
 
-
-#Signup page
+# Signup page
 def handleSignup(request):
     if request.method=="POST":
         # Get the post parameter
@@ -86,7 +109,7 @@ def handleSignup(request):
             return redirect('mainApp')
 
 
-        #Create the user
+        # Create the user
         myuser=User.objects.create_user(username,email,pass1)
         myuser.first_name=fname
         myuser.last_name=lname
@@ -98,8 +121,8 @@ def handleSignup(request):
         return redirect('mainApp')
 
     else:
-        return HttpResponse('404 - Not Found')
-#Login Page
+        return HttpResponseNotFound('<h1>Page not found</h1>')
+# Login Page
 def handleLogin(request):
     if request.method=="POST":
         loginusername=request.POST['loginusername']
@@ -114,8 +137,8 @@ def handleLogin(request):
         else:
             messages.error(request, 'You Have Entered Invalid Credential, Please try again')
             return redirect('mainApp')
-    return HttpResponse('404 - Not Found')
-#Logout
+    return HttpResponseNotFound('<h1>Page not found</h1>')
+# Logout
 def handleLogout(request):
     
     logout(request)

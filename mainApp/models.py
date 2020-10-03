@@ -12,3 +12,15 @@ class Contact(models.Model):
     def __str__(self):
         return self.name
     
+
+
+class UserHistory(models.Model):
+    username = models.CharField(max_length=50)
+    exp=models.CharField(max_length=100)
+    salary = models.CharField(max_length=1000)
+    
+    date = models.DateField()
+    # updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.username
