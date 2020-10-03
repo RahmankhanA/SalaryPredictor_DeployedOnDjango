@@ -32,19 +32,22 @@ def result(request):
     cls = joblib.load("final_model.sav")
     
     
-    Experience=int(request.POST["Experience"])
-    Experience=np.reshape(Experience,(-1, 1))
-    Experience=Experience.astype('float64')
-   
-        
-  
-       
- 
+    Experience=request.POST["Experience"]
+    if Experience.isnumeric():
 
-    result= cls.predict(Experience)
-    result=result.item()
-    result=round(result, 2)
-    return render(request, 'result.html', {'result':result})
+        Experience=np.reshape(Experience,(-1, 1))
+        Experience=Experience.astype('float64')
+           #    Experience=np.array([[0]])
+        print(Experience)
+        result= cls.predict(Experience)
+        result=result.item()
+        result=round(result, 2)
+        return render(request, 'result.html', {'result':result})
+
+    else:
+        messages.error(request, 'Please Provide Your Experience in Number ')
+        return redirect('mainApp')
+
 #Signup page
 def handleSignup(request):
     if request.method=="POST":
