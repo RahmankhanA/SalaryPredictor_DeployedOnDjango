@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% block tittle %} history {% endblock tittle %} {% block body %}
+
+
+<p class="justify-content-center">
+    <a class="btn btn-primary " data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            History
+        </a>
+
+</p>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <h1> {{request.user}}</h1> {% for detail in history_list %}
+        <div class="container">
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item list-group-item-dark">
+                    <h3>Your Experience is: {{detail.exp}}
+                    </h3>
+                </li>
+                <li class="list-group-item list-group-item-dark">
+                    <h3>Your Predicted Salary is: {{detail.salary}}
+                    </h3>
+                </li>
+                <li class="list-group-item list-group-item-dark">
+                    <h3>{{detail.date}}</h3>
+                </li>
+            </ul>
+
+
+
+
+
+
+        </div>{% endfor %}
+    </div>
+</div>{% endblock body %}

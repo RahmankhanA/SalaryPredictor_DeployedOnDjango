@@ -5,21 +5,28 @@
   {% csrf_token %}
   <div class="form-group">
     <label for="name">Your Name</label>
-    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name">
+    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name" required>
   </div>
   <div class="form-group">
     <label for="email">Your Email</label>
-    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email">
+    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email" required>
   </div>
   <div class="form-group">
     <label for="phone">Your Phone Numberr(with country code)</label>
-    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter Your Phone Numbe">
+    <input type="tel" class="form-control" id="phone" name="phone"  pattern="[0-9].{10}" placeholder="Enter Your Phone Numbe" required>
   </div>
    <div class="form-group">
     <label for="desc">How we can serve you</label>
-    <textarea class="form-control" id="desc" name="desc" rows="3"></textarea>
+    <textarea class="form-control" id="desc" name="desc" required rows="3"></textarea>
   </div>
   <button type="submit" class="btn btn-success">Submit</button>
 </form>
 </div>
 {% endblock body %}
+
+
+
+{% comment %} Adding country code picker
+<select id="countries_phone1" class="form-control bfh-countries" data-country="US"></select>
+<br><br>
+<input type="text" class="form-control bfh-phone" data-country="countries_phone1"> {% endcomment %}

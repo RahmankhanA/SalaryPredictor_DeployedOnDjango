@@ -8,12 +8,25 @@
 {% block body %}
 <div class="container">
     <br><br><br><br><br><br>
-    <b> <h3>Your Predicted Salary is: {{result}} 
-<span>&#8377;</span> Per Months </h3></b>
+    <b>
+        <h3>Your Predicted Salary is: {{result}}
+            <span>&#8377;</span> Per Months </h3>
+    </b>
 
-    <a href="/" class="link">
-        <br><br><br>
-        <h3>Go Back to Home</h3>
-    </a>
+    <div class="navbar container">
+
+        <a href="/" class="link">
+            <br><br><br>
+            <h3>Go Back to Home</h3>
+        </a>
+
+
+        <a href="/history" class="link">
+            <br><br><br>
+            <h3>Want to see your History</h3>
+        </a>
+
+    </div>
+
 </div>
 {% endblock body %}

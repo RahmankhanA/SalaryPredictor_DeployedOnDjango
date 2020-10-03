@@ -1,41 +1,33 @@
- <html>
-<head>
-<title> SALARY PREDICTION SOFTWARE </title>
-    <style>
-        body {
-            background-image: linear-gradient(rgb(43, 56, 246), rgb(134, 53, 130));
-            height: 935px;
-        }
-    </style>
-</head>
-<body >
-<br>
-<br>
-<center> <b><u><h1>Introduction</h1></u></b> </center>
-<p align="justify"><h3><b><br>
-The explosion of the Internet has deeply affected the labour market.
-Identifying most rewarded and demanded items in job offers is key for recruiters and candidates.<br><br>
-We conclude that :-<br> 
-(1) experience is more rewarded than education, <br>
-(2) we identify five profile clusters based on required skills and <br>
-(3) we develop an accurate salary-range classifier by using tree-based ensembles.
-</h3></b></p>
-<br>
-<hr><br><br>
-<center><b><u><h1>Salary Range Prediction</h1></u></b>  </center>
-<p><h3><b><br>
-In order to improve the accuracy of salary prediction, we formulate the problem as a classification task with four classes corresponding to low, medium-low, medium-high and high salary ranges.
-This work focuses on the challenge of predicting the salary offered by companies through job posts on the web. Instead of focusing on international and multi-domain web portals, which are abundant in terms of number of posts, this work analyses job posts collected from Tecnoempleo, an e-Recruitment website specialized in IT jobs for young people in Spain. Domain and geographical restrictions of the website make salary prediction a challenging task. In fact, the number of posts including an explicit indication of the salary, collected in 5 months on a daily basis, is only � 4,000. Moreover, each post is retrieved as a vector of � 2,000 features. From a machine learning perspective, the task is difficult because of the limited number of samples, the relatively high dimensionality and the presence of noise.
-After analysing key aspects from the job market, we assess the relevance of the features that can be used to predict salaries. Results indicate that some features, such as experience, job stability or certain job roles (i.e Team Leader and IT Architect) contribute significantly to the final salary perceived by employees.
-</p>
-</h3></b></p>
-<br>
-<hr><br><br>
-<center><b><u><h1>Conclusion</h1></u></b> </center>
-<p><h3><b><br>
-Finally, this work classifies job posts according to the offered salary range in a noisy and example-scarce context. After collection, features are preprocessed and the dimensionality is reduced by 10 times by using a customized procedure exploiting the domain knowledge. Embedded feature selection or other state-of-the-art filter methods are not beneficial in terms of classification accuracy. We compare several models including logistic regression, nearest neighbors, MLPs, SVMs, random forests, adaptive boosting and voting classifiers based on all or part of them. Experiments show that ensembles based on decision trees behave generally better and that a voting committee based on them leads to an accuracy of � 84%.
-</p>
-<br>
-</body>
-</head>
- 
+{% extends 'base.html' %}
+{% block tittle %} About
+{% endblock tittle %}
+{% block body %}
+<div class="mx-3" ><center> <b><u><h1>Introduction</h1></u></b> </center>
+    <p align="justify">
+        <h3><b><br>
+    The explosion of the Internet has deeply affected the labour market.
+    Identifying most rewarded and demanded items in job offers is key for recruiters and candidates.<br><br>
+    We conclude that :-<br> 
+    (1) experience is more rewarded than education, <br>
+    (2) we identify five profile clusters based on required skills and <br>
+    (3) we develop an accurate salary-range classifier by using tree-based ensembles.
+    </h3></b></p>
+    <br>
+    <hr><br><br>
+    <center><b><u><h1>Salary Range Prediction</h1></u></b> </center>
+    <p>
+        <h3><b><br>
+    In order to improve the accuracy of salary prediction, we formulate the problem as a classification task with four classes corresponding to low, medium-low, medium-high and high salary ranges.
+    This work focuses on the challenge of predicting the salary offered by companies through job posts on the web. Instead of focusing on international and multi-domain web portals, which are abundant in terms of number of posts, this work analyses job posts collected from Tecnoempleo, an e-Recruitment website specialized in IT jobs for young people in Spain. Domain and geographical restrictions of the website make salary prediction a challenging task. In fact, the number of posts including an explicit indication of the salary, collected in 5 months on a daily basis, is only � 4,000. Moreover, each post is retrieved as a vector of � 2,000 features. From a machine learning perspective, the task is difficult because of the limited number of samples, the relatively high dimensionality and the presence of noise.
+    After analysing key aspects from the job market, we assess the relevance of the features that can be used to predict salaries. Results indicate that some features, such as experience, job stability or certain job roles (i.e Team Leader and IT Architect) contribute significantly to the final salary perceived by employees.
+    </p>
+    </h3></b></p>
+    <br>
+    <hr><br><br>
+    <center><b><u><h1>Conclusion</h1></u></b> </center>
+    <p>
+        <h3><b><br>
+    Finally, this work classifies job posts according to the offered salary range in a noisy and example-scarce context. After collection, features are preprocessed and the dimensionality is reduced by 10 times by using a customized procedure exploiting the domain knowledge. Embedded feature selection or other state-of-the-art filter methods are not beneficial in terms of classification accuracy. We compare several models including logistic regression, nearest neighbors, MLPs, SVMs, random forests, adaptive boosting and voting classifiers based on all or part of them. Experiments show that ensembles based on decision trees behave generally better and that a voting committee based on them leads to an accuracy of � 84%.
+    </p>
+    </div>
+{% endblock body %}
