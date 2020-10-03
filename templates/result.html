@@ -19,13 +19,13 @@
             <br><br><br>
             <h3>Go Back to Home</h3>
         </a>
-
+ {% if user.is_authenticated %}
 
         <a href="/history" class="link">
             <br><br><br>
             <h3>Want to see your History</h3>
         </a>
-
+{% endif %}
     </div>
 
 </div>
