@@ -91,6 +91,8 @@ def handleSignup(request):
         myuser.first_name=fname
         myuser.last_name=lname
         myuser.save()
+        user= authenticate(username=username,password=pass1)
+        login(request,user)
         messages.success(request, 'Congrates You have successfully created an account')
 
         return redirect('mainApp')
