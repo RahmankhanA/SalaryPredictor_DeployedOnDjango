@@ -27,13 +27,30 @@ def contact(request):
         contact.save()
         messages.success(request, "Thanks For Contacting Us We Will Manage Your Feedback  ")
     return render(request, 'contact.html')
+# Checking error
+def is_string(string):
+    
+
+        
+    try:
+        float(string)
+        output=False
+       
+    except ValueError:
+        
+        output=True
+
+    return output
+
+
+
 #Result Page
 def result(request):
     cls = joblib.load("final_model.sav")
     
     
-    Experience=request.POST["Experience"]
-    if Experience.isnumeric():
+    Experience=request.GET["Experience"]
+    if is_string(Experience)==False:
 
         Experience=np.reshape(Experience,(-1, 1))
         Experience=Experience.astype('float64')
@@ -47,6 +64,7 @@ def result(request):
     else:
         messages.error(request, 'Please Provide Your Experience in Number ')
         return redirect('mainApp')
+
 
 #Signup page
 def handleSignup(request):
