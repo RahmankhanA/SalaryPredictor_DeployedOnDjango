@@ -7,26 +7,26 @@
 </style>
 {% block body %}
 <div class="container">
-    <br><br><br><br><br><br>
-    <b>
-        <h3>Your Predicted Salary is: {{result}}
-            <span>&#8377;</span> Per Months </h3>
-    </b>
+    <div class="jumbotron">
+        <h2 class="display-4">
+            <b> Your Predicted Salary is: {{result}}
+                <span>&#8377;</span> Per Months
+            </b>
+        </h2>
+        <p class="lead">This is a combo of machine learning and django.</p>
+        <hr class="my-4">
+        <p>Here you can enter your experience in order to see your estimated salary.</p>
+        <div class="navbar container">
+            <a class="btn btn-primary btn-lg" href="/" role="button">Go Back to Home</a> {% if user.is_authenticated %}
 
-    <div class="navbar container">
+            <a href="/history" class="btn btn-primary btn-lg">
 
-        <a href="/" class="link">
-            <br><br><br>
-            <h3>Go Back to Home</h3>
-        </a>
- {% if user.is_authenticated %}
+                <h3>Want to see your History</h3>
+            </a>
+            {% endif %}
+        </div>
 
-        <a href="/history" class="link">
-            <br><br><br>
-            <h3>Want to see your History</h3>
-        </a>
-{% endif %}
+
+
     </div>
-
-</div>
-{% endblock body %}
+    {% endblock body %}

@@ -13,13 +13,8 @@ from datetime import datetime
 
 def history(request):
     history_list=UserHistory.objects.filter(username=request.user)
-    for detail in history_list:
-    
-        # print(detail)
-        print(detail.exp)
-        print(detail.salary)
-        print(detail.date)
-    return render(request,'history.html', {'history_list':history_list})
+    userl=request.user
+    return render(request,'history.html', {'history_list':history_list,'uname':str(userl).capitalize()})
 def index(request):
     return render(request, 'index.html')
 
@@ -29,8 +24,7 @@ def index(request):
 def about(request):
     return render(request, 'about.html')
 
-# def notfound(request):
-#     return render(request, 'notfound.html')
+
 
 # Contact Page
 
@@ -66,19 +60,19 @@ def is_string(string):
 def result(request):
     cls = joblib.load("final_model.sav")
 
-    Experience = request.POST["Experience"]
+    Experience = request.GET["Experience"]
     if is_string(Experience) == False:
 
         Experience = np.reshape(Experience, (-1, 1))
         Experience = Experience.astype('float64')
            #    Experience=np.array([[0]])
-        print(Experience)
+        # print(Experience)
         result = cls.predict(Experience)
         result = result.item()
         result = round(result, 2)
         if  request.user.is_authenticated:
 
-            print(request.user!='AnonymousUser')
+        
             
        
             history = UserHistory(exp=Experience.item(), salary=result, username=request.user, date=datetime.now())
