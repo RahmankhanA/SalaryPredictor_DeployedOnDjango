@@ -13,8 +13,17 @@ from datetime import datetime
 
 def history(request):
     history_list=UserHistory.objects.filter(username=request.user)
-    userl=request.user
-    return render(request,'history.html', {'history_list':history_list,'uname':str(userl).capitalize()})
+    usern=request.user
+    len_history=len(history_list)
+    print(len_history)
+    return render(request,'history.html', {'history_list':history_list,'uname':str(usern).capitalize(), 'len_history':len_history})
+
+def clear_history(request):
+    print("Rahman is come back")
+    history=UserHistory.objects.filter(username=request.user)
+    history.delete()
+    messages.success(request, "Your Activity hase been cleared")
+    return redirect('/history')
 def index(request):
     return render(request, 'index.html')
 

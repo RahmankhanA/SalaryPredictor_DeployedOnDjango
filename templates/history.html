@@ -7,18 +7,22 @@
 <p class="justify-content-center">
 
     <a href="/" class="btn btn-primary">
-       Go Back to Home
+        Go Back to Home
     </a>
 
     <a class="btn btn-primary mx-3" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-            History
-        </a>
+        History
+    </a>
+
 
 </p>
 <div class="collapse" id="collapseExample">
     <div class="card card-body">
+        {% if len_history %}
+
+
         <h1> {{uname}} Activity</h1> {% for detail in history_list %}
-        <div class="container">
+        <div class="container ">
             <ul class="list-group list-group-horizontal">
                 <li class="list-group-item list-group-item-dark">
                     <h3>Your Experience is: {{detail.exp}}
@@ -36,9 +40,15 @@
 
 
 
-
-
         </div>{% endfor %}
+        <div class="container mx-3"> <a class="btn btn-primary mt-3 float-right" href="/clear_history">
+            Clear History
+        </a></div>
+        {% else %}
+
+        <h3>You Have Aot Any Activity(History) Record, Please Use Our System To See The History</h3>
+
+        {% endif %}
     </div>
 </div>
 <div class="container">
@@ -90,7 +100,7 @@
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 150,
+        autoplaySpeed: 15,
         mobileFirst: true
     });
 </script>

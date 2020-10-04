@@ -15,15 +15,14 @@
         </h2>
         <p class="lead">This is a combo of machine learning and django.</p>
         <hr class="my-4">
-        <p>Here you can enter your experience in order to see your estimated salary.</p>
+        <p>Click the History Button to see your previous activity.</p>
         <div class="navbar container">
             <a class="btn btn-primary btn-lg" href="/" role="button">Go Back to Home</a> {% if user.is_authenticated %}
 
             <a href="/history" class="btn btn-primary btn-lg">
 
-                <h3>Want to see your History</h3>
-            </a>
-            {% endif %}
+               Want to see your History
+            </a> {% endif %}
         </div>
 
 
