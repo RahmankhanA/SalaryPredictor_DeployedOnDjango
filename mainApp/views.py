@@ -15,7 +15,7 @@ def history(request):
     history_list=UserHistory.objects.filter(username=request.user)
     usern=request.user
     len_history=len(history_list)
-    print(len_history)
+   
     return render(request,'history.html', {'history_list':history_list,'uname':str(usern).capitalize(), 'len_history':len_history})
 
 def clear_history(request):
